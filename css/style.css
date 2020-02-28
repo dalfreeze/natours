@@ -6,3 +6,128 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/**/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 1 */
+}
+/* 1. The box-sizing property allows us to include the padding and border in an element's total width and height.*/
+
+/* Properties related to font are usualy inherited */
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7; /* 1 */
+    color: #777;
+    padding: 30px;
+}
+/* 1. Line height will now be 1.7x bigger than original*/
+
+.header {
+    height: 95vh; /* 1 */
+    background-image: linear-gradient(
+        to right bottom,
+        #55c57acc,
+        #28b485cc),
+    url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top; /* 2 */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    position: relative;
+}
+/* 1. It will always be 95% of the view port
+   2. Assures that the top of the image states at the top of the viewport no matter what
+*/
+
+.logo-box {
+    position: absolute;
+    top: 40px;/*1*/
+    left: 40px;/*1*/
+}
+/*
+1. The reference point for these pixels is set by setting position: relative to the parent element, in this case the body
+*/
+
+.logo {
+    height: 35px;
+}
+
+.text-box {
+    position: absolute;
+    top: 40%;/*2*/
+    left: 50%;/*2*/
+    transform: translate(-50%, -50%);/*1*/
+}
+/*
+1. shifts the point at which the div is measured from the top and left
+2. These percentages are in relation to the parent element
+*/
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+
+    backface-visibility: hidden; /*1*/
+}
+/*
+1. Hides the movement of this container when a child element is transformed
+*/
+
+.heading-primary-main {
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+
+    /* animation-iteration-count: 3; */
+    /* animation-delay: 3s; */
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+
+    animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}

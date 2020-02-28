@@ -61,10 +61,12 @@ body {
     top: 40%;/*2*/
     left: 50%;/*2*/
     transform: translate(-50%, -50%);/*1*/
+    text-align: center; /*3*/
 }
 /*
 1. shifts the point at which the div is measured from the top and left
 2. These percentages are in relation to the parent element
+3. Will set text-align center to all text, including the <a> btn
 */
 
 .heading-primary {
@@ -72,6 +74,7 @@ body {
     text-transform: uppercase;
 
     backface-visibility: hidden; /*1*/
+    margin-bottom: 60px;
 }
 /*
 1. Hides the movement of this container when a child element is transformed
@@ -131,3 +134,82 @@ body {
         transform: translate(0);
     }
 }
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block; /*1*/
+    border-radius: 100px;
+    transition: all .2s;/*2*/
+    backface-visibility: hidden;
+    position: relative;
+}
+/*
+1. Should always do this if you want to add padding, width, or height to elements
+2. Applies these rules to all of the transforms in the pseudoclasses
+*/
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px #00000033;
+}
+
+.btn:active {/*1*/
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px #00000033;
+}
+/*
+1. Active is when it's clicked
+*/
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+
+.btn::after { /*1*/
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+/*
+1. Treated like the child of the .btn element
+*/
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out .85s;
+    animation-fill-mode: backwards; /*1*/
+}
+/*
+1. Applies the 0% properties to the beginning
+*/

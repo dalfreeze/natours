@@ -9,23 +9,30 @@ Dark green: #28b485
 
 /**/
 
-* {
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* 1 */
+    box-sizing: inherit;
 }
-/* 1. The box-sizing property allows us to include the padding and border in an element's total width and height.*/
+
+html {
+    font-size: 62.5%;
+}
 
 /* Properties related to font are usualy inherited */
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 1.7; /* 1 */
     color: #777;
-    padding: 30px;
+    padding: 3rem;
+    box-sizing: border-box; /* 2 */
 }
 /* 1. Line height will now be 1.7x bigger than original*/
+/* 2. The box-sizing property allows us to include the padding and border in an element's total width and height.*/
 
 .header {
     height: 95vh; /* 1 */
@@ -43,20 +50,20 @@ body {
    2. Assures that the top of the image states at the top of the viewport no matter what
 */
 
-.logo-box {
+.header__logo-box {
     position: absolute;
-    top: 40px;/*1*/
-    left: 40px;/*1*/
+    top: 4rem;/*1*/
+    left: 4rem;/*1*/
 }
 /*
 1. The reference point for these pixels is set by setting position: relative to the parent element, in this case the body
 */
 
-.logo {
-    height: 35px;
+.header__logo {
+    height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
     position: absolute;
     top: 40%;/*2*/
     left: 50%;/*2*/
@@ -74,17 +81,17 @@ body {
     text-transform: uppercase;
 
     backface-visibility: hidden; /*1*/
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 /*
 1. Hides the movement of this container when a child element is transformed
 */
 
-.heading-primary-main {
+.heading-primary--main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
 
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -94,11 +101,11 @@ body {
     /* animation-delay: 3s; */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
 
     animation: moveInRight 1s ease-out;
 }
@@ -106,11 +113,11 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
 
     80% {
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
 
     100% {
@@ -122,11 +129,11 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
 
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
 
     100% {
@@ -138,7 +145,7 @@ body {
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
 
     100% {
@@ -151,12 +158,13 @@ body {
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     display: inline-block; /*1*/
-    border-radius: 100px;
+    border-radius: 10rem;
     transition: all .2s;/*2*/
     backface-visibility: hidden;
     position: relative;
+    font-size: 1.6rem;
 }
 /*
 1. Should always do this if you want to add padding, width, or height to elements
@@ -165,18 +173,18 @@ body {
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px #00000033;
+    box-shadow: 0 1rem 2rem #00000033;
 }
 
 .btn:active {/*1*/
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px #00000033;
+    box-shadow: 0 .5rem 1rem #00000033;
 }
 /*
 1. Active is when it's clicked
 */
 
-.btn-white {
+.btn--white {
     background-color: #fff;
     color: #777;
 }
@@ -186,7 +194,7 @@ body {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -197,7 +205,7 @@ body {
 1. Treated like the child of the .btn element
 */
 
-.btn-white::after {
+.btn--white::after {
     background-color: #fff;
 }
 
@@ -206,7 +214,7 @@ body {
     opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
     animation: moveInBottom .5s ease-out .85s;
     animation-fill-mode: backwards; /*1*/
 }

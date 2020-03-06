@@ -3,9 +3,10 @@
 $color-primary: #55c57a;
 $color-primary-light: #7ed56f;
 $color-primary-dark: #28b485;
-$color-primary-light-op: #7ed56fcc;
-$color-primary-dark-op: #28b485cc;
 
+$color-gray-dark: #777;
+$color-white: #fff;
+$color-black: #000;
 
 *,
 *::after,
@@ -25,7 +26,7 @@ body {
     font-weight: 400;
     /* font-size: 16px; */
     line-height: 1.7; /* 1 */
-    color: #777;
+    color: $color-gray-dark;
     padding: 3rem;
     box-sizing: border-box; /* 2 */
 }
@@ -33,80 +34,80 @@ body {
 /* 2. The box-sizing property allows us to include the padding and border in an element's total width and height.*/
 
 .header {
-    height: 90vh; /* 1 */
+    height: 95vh; /* 1 */
     background-image: linear-gradient(
         to right bottom,
-        $color-primary-light-op,
-        $color-primary-dark-op),
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)),
     url(../img/hero.jpg);
     background-size: cover;
     background-position: top; /* 2 */
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     position: relative;
+
+    &__logo-box {
+        position: absolute;
+        top: 3rem;/*1*/
+        left: 4rem;/*1*/
+    }
+    /*
+    1. The reference point for these pixels is set by setting position: relative tothe parent element, in this case the body
+    */
+
+    &__logo {
+        height: 3.5rem;
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 40%;/*2*/
+        left: 50%;/*2*/
+        transform: translate(-50%, -50%);/*1*/
+        text-align: center; /*3*/
+    }
+    /*
+    1. shifts the point at which the div is measured from the top and left
+    2. These percentages are in relation to the parent element
+    3. Will set text-align center to all text, including the <a> btn
+    */
 }
 /* 1. It will always be 95% of the view port
    2. Assures that the top of the image states at the top of the viewport no matter what
 */
 
-.header__logo-box {
-    position: absolute;
-    top: 3rem;/*1*/
-    left: 4rem;/*1*/
-}
-/*
-1. The reference point for these pixels is set by setting position: relative to the parent element, in this case the body
-*/
-
-.header__logo {
-    height: 3.5rem;
-}
-
-.header__text-box {
-    position: absolute;
-    top: 40%;/*2*/
-    left: 50%;/*2*/
-    transform: translate(-50%, -50%);/*1*/
-    text-align: center; /*3*/
-}
-/*
-1. shifts the point at which the div is measured from the top and left
-2. These percentages are in relation to the parent element
-3. Will set text-align center to all text, including the <a> btn
-*/
-
 .heading-primary {
-    color: #fff;
+    color: $color-white;
     text-transform: uppercase;
 
     backface-visibility: hidden; /*1*/
     margin-bottom: 6rem;
+
+    &--main {
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+
+        /* animation-iteration-count: 3; */
+        /* animation-delay: 3s; */
+    }
+
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+
+        animation: moveInRight 1s ease-out;
+    }
 }
 /*
 1. Hides the movement of this container when a child element is transformed
 */
-
-.heading-primary--main {
-    display: block;
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-
-    /* animation-iteration-count: 3; */
-    /* animation-delay: 3s; */
-}
-
-.heading-primary--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.75rem;
-
-    animation: moveInRight 1s ease-out;
-}
 
 @keyframes moveInLeft {
     0% {
@@ -152,70 +153,72 @@ body {
     }
 }
 
-.btn:link,
-.btn:visited {
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.5rem 4rem;
-    display: inline-block; /*1*/
-    border-radius: 10rem;
-    transition: all .2s;/*2*/
-    backface-visibility: hidden;
-    position: relative;
-    font-size: 1.6rem;
-}
-/*
-1. Should always do this if you want to add padding, width, or height to elements
-2. Applies these rules to all of the transforms in the pseudoclasses
-*/
+.btn {
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block; /*1*/
+        border-radius: 10rem;
+        transition: all .2s;/*2*/
+        backface-visibility: hidden;
+        position: relative;
+        font-size: 1.6rem;
+    }
+    /*
+    1. Should always do this if you want to add padding, width, or height to elements
+    2. Applies these rules to all of the transforms in the pseudoclasses
+    */
 
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 1rem 2rem #00000033;
-}
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
 
-.btn:active {/*1*/
-    transform: translateY(-1px);
-    box-shadow: 0 .5rem 1rem #00000033;
-}
-/*
-1. Active is when it's clicked
-*/
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
 
-.btn--white {
-    background-color: #fff;
-    color: #777;
-}
+    &:active {/*1*/
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+    /*
+    1. Active is when it's clicked
+    */
 
-.btn::after { /*1*/
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius: 10rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all .4s;
-}
-/*
-1. Treated like the child of the .btn element
-*/
+    &--white {
+        background-color: $color-white;
+        color: $color-gray-dark;
 
-.btn--white::after {
-    background-color: #fff;
-}
+        &::after {
+            background-color: $color-white;
+        }
+    }
 
-.btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-}
+    &::after { /*1*/
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+    /*
+    1. Treated like the child of the .btn element
+    */
 
-.btn--animated {
-    animation: moveInBottom .5s ease-out .85s;
-    animation-fill-mode: backwards; /*1*/
+    &--animated {
+        animation: moveInBottom .5s ease-out .85s;
+        animation-fill-mode: backwards; /*1*/
+    }
+    /*
+    1. Applies the 0% properties to the beginning
+    */
 }
-/*
-1. Applies the 0% properties to the beginning
-*/

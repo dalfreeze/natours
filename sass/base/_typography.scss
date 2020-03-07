@@ -1,0 +1,46 @@
+/* Properties related to font are usualy inherited */
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /* font-size: 16px; */
+    line-height: 1.7; /* 1 */
+    color: $color-gray-dark;
+    padding: 3rem;
+    // box-sizing: border-box; /* 2 */
+}
+/* 1. Line height will now be 1.7x bigger than original*/
+/* 2. The box-sizing property allows us to include the padding and border in an element's total width and height.*/
+
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+
+    backface-visibility: hidden; /*1*/
+    margin-bottom: 6rem;
+
+    &--main {
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+
+        /* animation-iteration-count: 3; */
+        /* animation-delay: 3s; */
+    }
+
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+
+        animation: moveInRight 1s ease-out;
+    }
+}
+/*
+1. Hides the movement of this container when a child element is transformed
+*/

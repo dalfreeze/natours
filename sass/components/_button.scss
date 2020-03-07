@@ -1,0 +1,69 @@
+.btn {
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block; /*1*/
+        border-radius: 10rem;
+        transition: all .2s;/*2*/
+        backface-visibility: hidden;
+        position: relative;
+        font-size: 1.6rem;
+    }
+    /*
+    1. Should always do this if you want to add padding, width, or height to elements
+    2. Applies these rules to all of the transforms in the pseudoclasses
+    */
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active {/*1*/
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+    /*
+    1. Active is when it's clicked
+    */
+
+    &--white {
+        background-color: $color-white;
+        color: $color-gray-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &::after { /*1*/
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+    /*
+    1. Treated like the child of the .btn element
+    */
+
+    &--animated {
+        animation: moveInBottom .5s ease-out .85s;
+        animation-fill-mode: backwards; /*1*/
+    }
+    /*
+    1. Applies the 0% properties to the beginning
+    */
+}

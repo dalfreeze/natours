@@ -1,0 +1,26 @@
+// Partial sass file
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%; //1 // more of a setting for sizing page rather than typography
+}
+// 1. This defines what one rem is
+
+/* Properties related to font are usualy inherited */
+body {
+    // font-family: "Lato", sans-serif;
+    // font-weight: 400;
+    // /* font-size: 16px; */
+    // line-height: 1.7; /* 1 */
+    // color: $color-gray-dark;
+    // padding: 3rem;
+    box-sizing: border-box; /* 2 */
+}
+/* 1. Line height will now be 1.7x bigger than original*/
+/* 2. The box-sizing property allows us to include the padding and border in an element's total width and height.*/
